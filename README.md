@@ -55,6 +55,8 @@ ros2 launch open_manipulator_bringup omx_ai.launch.py
 
 ### 기존 오류
 
+Teleoperate
+
 ros2 launch ~ 실행시 ID:11 motor에서 error 발생
 11번 motor는 omx_f_follower에 위치
 
@@ -66,4 +68,15 @@ try
 
 따라서 hardware 쪽 문제라고 판단하여 omx_f_follower의 조립 재확인 및 인가 전원 확인
 - follower Operating Voltage : 12V  but 현재 5V로 leader와 동일 전원 인가중이었음 -> 5V 전원 해제
-- 다른 전원 인가시 불꽃이 튀고 operate 전에 바로 끊기는 현상 발생 -> 과전압으로 판단되어 정확히 12V 공급 어댑터 연결 -> 정상적으로 작동 ✅
+- 다른 전원 인가시 불꽃이 튀고 operate 전에 바로 끊기는 현상 발생 -> 과전압으로 판단되어 정확히 12V 공급 어댑터 연결 -> 정상적으로 작동 ✅ 
+
+<img width="1879" height="751" alt="image" src="https://github.com/user-attachments/assets/872da6de-f733-4c54-a07c-2aebb91aa296" />
+
+---
+
+toward...
+
+```bash
+- follower gripper 부분 재설정. 조립 잘못됨
+- teleoperate 진행해보고 MoveIt 2 들어가기
+```

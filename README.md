@@ -25,11 +25,11 @@ ls -al /dev/serial/by-id/
 
 ### 파일 수정 (리더 ,팔로워) 
 
-#leader
+# leader
 ```bash
 sudo nano ~/ros2_ws/src/open_manipulator/open_manipulator_bringup/launch/omx_l_leader_ai.launch.py
 ```
-#follower
+# follower
 ```bash
 sudo nano ~/ros2_ws/src/open_manipulator/open_manipulator_bringup/launch/omx_f_follower_ai.launch.py
 ```
@@ -54,9 +54,7 @@ ros2 launch open_manipulator_bringup omx_ai.launch.py
 
 ---
 
-### 기존 오류
-
-Teleoperate
+### 기존 오류 (Teleoperate)
 
 ros2 launch ~ 실행시 ID:11 motor에서 error 발생
 11번 motor는 omx_f_follower에 위치

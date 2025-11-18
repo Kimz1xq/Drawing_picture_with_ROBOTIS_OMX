@@ -25,11 +25,11 @@ ls -al /dev/serial/by-id/
 
 ### 파일 수정 (리더 ,팔로워) 
 
-# leader
+#leader
 ```bash
 sudo nano ~/ros2_ws/src/open_manipulator/open_manipulator_bringup/launch/omx_l_leader_ai.launch.py
 ```
-# follower
+#follower
 ```bash
 sudo nano ~/ros2_ws/src/open_manipulator/open_manipulator_bringup/launch/omx_f_follower_ai.launch.py
 ```

@@ -86,6 +86,18 @@ toward...
 
 11/29
 
+bringup
+```bash
+ros2 launch open_manipulator_bringup omx_f.launch.py
+```
+
+이대로만 돌리면 에러 발생([ID:011] 끊김). omx_f.launch.py의 Port number 맞춰줘야함 (omx_f_follower_ai.launch.py 번호와 동일하게)
+<img width="1233" height="140" alt="image" src="https://github.com/user-attachments/assets/2aa924eb-725c-4ee1-9ba3-34e1974048c1" />
+<img width="1432" height="851" alt="image" src="https://github.com/user-attachments/assets/ba7d2adf-2eab-42a9-9acd-706b85c60b1d" />
+정상적으로 작동. omx_f_follower_ai.launch.py과 다른 변수들도 맞춰야 하는지는 모르겠음.  + 그냥 omx_f_follower_ai.launch.py로 돌려도 되긴함! 
+
+<br>
+
 MoveIT 
 
 ```bash
@@ -97,7 +109,7 @@ MoveIT
 
 오류 원인 : omx_f의 urdf.py 경로가 moveit에 없음 -> 로봇 구현이 안됨
 
-<br/>
+<br>
 
 해결 방안 (1) : omx_f.urdf.xacro 파일 moveit_config로 복제
 ```bash
@@ -137,6 +149,42 @@ ros2 launch open_manipulator_moveit_config omx_f_moveit.launch.py
 <img width="1395" height="422" alt="image" src="https://github.com/user-attachments/assets/0005fe84-7e5e-455b-b2fa-ccd9413dbd2e" />
 
 
+<br>
 
+OpenMANIPULATOR GUI (bringup + MoveIt 실행상태에서)
 
+```bash
+ros2 launch open_manipulator_gui omx_f_gui.launch.py
+```
 
+현재 Joint space에서는 작동하는데, Task 적용이 안되는 에러 발생
+<img width="1552" height="865" alt="image" src="https://github.com/user-attachments/assets/e82bed7c-544c-41f8-8687-da6608307220" />
+
+<br>
+
+키보드 텔레오퍼레이션
+
+```bash
+ros2 run open_manipulator_teleop omx_f_teleop
+```
+
+Joint Control
+```bash
+1 / q - Joint 1 
+2 / w - Joint 2 
+3 / e - Joint 3
+4 / r - Joint 4
+5 / t - Joint 5
+```
+Gripper Control
+```bash
+o - Open gripper
+p - Close gripper
+```
+
+---
+
+Toward...
+- GUI 내에서 Task 수행 및 학습
+- Gazebo나 다른 시뮬 같이 수행
+=> 일단 학습 가능 단계까지 구현하기 !!!

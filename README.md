@@ -79,3 +79,64 @@ toward...
 - follower gripper 부분 재설정. 조립 잘못됨
 - teleoperate 진행해보고 MoveIt 2 들어가기
 ```
+
+
+---
+
+
+11/29
+
+MoveIT 
+
+```bash
+ ros2 launch open_manipulator_moveit_config omx_f_moveit.launch.py
+```
+바로 실행하면 다음과 같은 에러 발생
+<img width="1701" height="363" alt="image" src="https://github.com/user-attachments/assets/6be33008-7d46-4df6-b00b-906b9cb6eda3" />
+
+
+오류 원인 : omx_f의 urdf.py 경로가 moveit에 없음 -> 로봇 구현이 안됨
+
+<br/>
+
+해결 방안 (1) : omx_f.urdf.xacro 파일 moveit_config로 복제
+```bash
+cd ~/Project/omx/open_manipulator/open_manipulator_moveit_config
+
+mkdir -p config/omx_f
+
+cp ../open_manipulator_description/urdf/omx_f/omx_f.urdf.xacro \
+   config/omx_f/omx_f.urdf.xacro
+```
+해결 방안 (2) moveit_config 수정
+```bash
+moveit_config = (
+        MoveItConfigsBuilder(
+            robot_name='omx_f', package_name='open_manipulator_moveit_config')
+        .robot_description(   # ⬅ 여기 변수 생성 (urdf.xarcro 경로 추가해주는 과정)
+            str(Path('config') / 'omx_f' / 'omx_f.urdf.xacro'))
+        .robot_description_semantic(
+            str(Path('config') / 'omx_f' / 'omx_f.srdf'))
+        .joint_limits(str(Path('config') / 'omx_f' / 'joint_limits.yaml'))
+        .trajectory_execution(
+            str(Path('config') / 'omx_f' / 'moveit_controllers.yaml'))
+        .robot_description_kinematics(
+            str(Path('config') / 'omx_f' / 'kinematics.yaml'))
+        .to_moveit_configs()
+    )
+```
+마지막으로 재빌드 해주면!
+```bash
+cd /root/ros2_ws
+colcon build --packages-select open_manipulator_moveit_config
+source install/setup.bash
+
+ros2 launch open_manipulator_moveit_config omx_f_moveit.launch.py
+```
+<img width="417" height="359" alt="image" src="https://github.com/user-attachments/assets/f64c029f-0d81-4477-8133-6058a98751bd" />
+<img width="1395" height="422" alt="image" src="https://github.com/user-attachments/assets/0005fe84-7e5e-455b-b2fa-ccd9413dbd2e" />
+
+
+
+
+

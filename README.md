@@ -120,7 +120,7 @@ mkdir -p config/omx_f
 cp ../open_manipulator_description/urdf/omx_f/omx_f.urdf.xacro \
    config/omx_f/omx_f.urdf.xacro
 ```
-해결 방안 (2) moveit_config 수정
+해결 방안 (2)  moveit -> launch -> omx_f_moveit.launch.py 수정
 ```bash
 moveit_config = (
         MoveItConfigsBuilder(
